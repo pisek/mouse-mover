@@ -5,7 +5,13 @@ apply plugin: 'java'
 
 sourceCompatibility = 1.5
 
-repositories {
+jar {
+    manifest {
+        attributes "Main-Class": "ga.servu.mousemover.Mover"
+    }
+}
+
+    repositories {
     mavenCentral()
 }
 
