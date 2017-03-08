@@ -1,18 +1,22 @@
 package ga.servu.mousemover;
 
 import java.awt.*;
+import java.io.Closeable;
 
 /**
  * Created by Pisek on 08.03.2017.
  */
-public class Mover {
+public class MouseMover implements Runnable, AutoCloseable {
 
-    public static void main(String[] args) {
+    private boolean run = true;
+
+    public void run() {
 
         int moveBy = 1;
 
-        while (true) {
+        while (run) {
             try {
+                System.out.println("Go");
                 Point l = MouseInfo.getPointerInfo().getLocation();
                 Robot r = new Robot();
                 r.mouseMove(l.x + moveBy, l.y);
@@ -24,4 +28,7 @@ public class Mover {
 
     }
 
+    public void close() {
+        this.run = false;
+    }
 }
